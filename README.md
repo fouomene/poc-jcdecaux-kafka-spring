@@ -1,5 +1,5 @@
 # poc-jcdecaux-kafka-spring
-We will use this JCDecaux API https://developer.jcdecaux.com to observe rentals at each bike station in real time..
+We will use this JCDecaux API https://developer.jcdecaux.com to observe rentals at each bike station in real time...
 
 
 
@@ -47,4 +47,7 @@ Once all services have successfully launched, you will have a basic Kafka enviro
 
 
 # Step 4: Run Spring Boot kafka apps JcdecauxProducerKafka, JcdecauxConsumerKafka
+
+Websocket Dashboard JCDecaux (Consumer)
+![alt text](https://afrinnov.xyz/dashboardjcdecaux.jpg) 
 

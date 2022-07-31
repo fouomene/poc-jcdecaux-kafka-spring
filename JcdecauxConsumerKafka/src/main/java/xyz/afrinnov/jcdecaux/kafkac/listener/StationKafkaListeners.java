@@ -2,25 +2,38 @@ package xyz.afrinnov.jcdecaux.kafkac.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.messaging.WebSocketStompClient;
 import xyz.afrinnov.jcdecaux.kafkac.messages.Station;
+import xyz.afrinnov.jcdecaux.kafkac.websocket.FactoryStompSession;
+import xyz.afrinnov.jcdecaux.kafkac.websocket.JcdecauxMessage;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Component
 public class StationKafkaListeners {
 
     private static final Logger log = LoggerFactory.getLogger(StationKafkaListeners.class);
-    private static Map<String, Station> mapOfStation = new HashMap<>();
+
+    private static final Map<String, Station> mapOfStation = new HashMap<>();
+
+    @Autowired
+    private WebSocketStompClient webSocketStompClient;
+
+    @Value("${url.serveur.websocket}")
+    private String urlServeurWebsocket;
 
     @KafkaListener(
             topics = "stationsjcdecaux",
             groupId = "afrinnov2",
             containerFactory = "stationFactory"
     )
-    void listener(Station station) {
+    void listener(Station station) throws ExecutionException, InterruptedException {
 
         // log.info(station.toString());
 
@@ -34,8 +47,13 @@ public class StationKafkaListeners {
         int count_diff = available_bike_stands - city_station.getAvailableBikeStands();
         if (count_diff != 0) {
             mapOfStation.put(name, station);
-            if (count_diff > 0)
-                log.info(count_diff + "****" + station.getAddress() + "****" + station.getContractName());
+            if (count_diff > 0) {
+
+                log.info(count_diff + " Support(s) à vélos disponibles ou occupés *** STATION : " + station.getContractName() + " **** ADRESSE : " + station.getAddress());
+
+                FactoryStompSession.getInstance(webSocketStompClient, urlServeurWebsocket)
+                        .send("/app/jcdecaux", new JcdecauxMessage(count_diff + " SV *** STATION : " + station.getContractName() + " *** ADRESSE : " + station.getAddress()));
+            }
         }
     }
 }
