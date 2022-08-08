@@ -1,5 +1,6 @@
 package xyz.afrinnov.jcdecaux.kafka;
 
+import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,12 +33,12 @@ public class JcdecauxProducerKafkaApplication {
         return builder.build();
     }
 
-    @Bean
+  /*  @Bean
     CommandLineRunner commandLineRunner(RestTemplate restTemplate, KafkaTemplate<String, Station> stationKafkaTemplate) {
         return args -> {
 
             Station[] stations;
-            for (int j = 0; j < 18; j++) {
+            for (int j = 0; j < 2; j++) {
 
                 stations = restTemplate.getForObject("https://api.jcdecaux.com/vls/v1/stations?apiKey=" + apiKeyJcdecaux, Station[].class);
 
@@ -56,5 +57,5 @@ public class JcdecauxProducerKafkaApplication {
             }
 
         };
-    }
+    }*/
 }

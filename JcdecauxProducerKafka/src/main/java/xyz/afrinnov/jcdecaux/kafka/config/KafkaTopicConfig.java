@@ -12,4 +12,6 @@ public class KafkaTopicConfig {
     public NewTopic stationsJcdecauxTopic() {
         return TopicBuilder.name("stationsjcdecaux").build();
     }
+
+
 }
