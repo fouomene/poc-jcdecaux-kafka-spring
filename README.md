@@ -1,7 +1,8 @@
 # poc-jcdecaux-kafka-spring
 We will use this JCDecaux API https://developer.jcdecaux.com to observe rentals at each bike station in real time...
 
-
+Architecture 
+![alt text](https://fouomene.com/architecture-event-driven.jpg) 
 
 # Step 1: Get API key 
 
@@ -50,11 +51,14 @@ Once all services have successfully launched, you will have a basic Kafka enviro
 
 
 Websocket Dashboard JCDecaux Producer
-![alt text](https://afrinnov.xyz/producerdashboard.jpg) 
+![alt text](https://fouomene.com/producerdashboard.jpg) 
 
 Start JCDecaux Producer
-![alt text](https://afrinnov.xyz/startproducer.jpg) 
+![alt text](https://fouomene.com/startproducer.jpg) 
 
 Websocket Dashboard JCDecaux Consumer
-![alt text](https://afrinnov.xyz/consumerdashboard.jpg) 
+![alt text](https://fouomene.com/consumerdashboard.jpg) 
+
+Kafka Manager
+![alt text](https://fouomene.com/managerkafka.jpg)
 
