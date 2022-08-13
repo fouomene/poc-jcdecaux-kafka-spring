@@ -48,7 +48,7 @@ Once all services have successfully launched, you will have a basic Kafka enviro
 
 
 # Step 4: Run Spring Boot kafka apps JcdecauxProducerKafka, JcdecauxConsumerKafka
-
+*mvn spring-boot:run*
 
 Websocket Dashboard JCDecaux Producer
 ![alt text](https://fouomene.com/producerdashboard.jpg) 
