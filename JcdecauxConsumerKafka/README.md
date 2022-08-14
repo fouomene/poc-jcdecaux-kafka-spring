@@ -1,10 +1,7 @@
-# JcdecauxProducerKafka
+# JcdecauxConsumerKafka
 
-# Run Spring Boot kafka app JcdecauxProducerKafka
+# Run Spring Boot kafka app
     mvn spring-boot:run
 
-Start JCDecaux Producer
-![alt text](https://fouomene.com/startproducer.jpg)
-
-Websocket Dashboard JCDecaux Producer
-![alt text](https://fouomene.com/producerdashboard.jpg) 
+Websocket Dashboard JCDecaux Consumer
+![alt text](https://fouomene.com/consumerdashboard.jpg) 

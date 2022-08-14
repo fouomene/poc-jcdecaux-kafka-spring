@@ -62,10 +62,10 @@ public class ProducerController {
     public String start(@Valid ParameterDTO parameter, BindingResult bindingResult, Model model) throws ExecutionException, InterruptedException {
 
         FactoryStompSession.getInstance(webSocketStompClient, urlServeurWebsocket)
-                .send("/app/jcdecauxproducer", new JcdecauxMessage("Démarrage du Producer JCDecaux avec les parametres : SleepTime=" + parameter.sleepTime() + " NumberOfCall=" + parameter.numberOfCall()));
+                .send("/app/jcdecauxproducer", new JcdecauxMessage("Démarrage du Producer JCDecaux avec les parametres : SleepTime=" + parameter.getSleepTime() + " NumberOfCall=" + parameter.getNumberOfCall()));
 
         Station[] stations;
-        for (int j = 0; j < parameter.numberOfCall(); j++) {
+        for (int j = 0; j < parameter.getNumberOfCall(); j++) {
 
             stations = restTemplate.getForObject(urlApiJcdecaux + apiKeyJcdecaux, Station[].class);
 
@@ -79,7 +79,7 @@ public class ProducerController {
             }
 
             try {
-                Thread.sleep(parameter.sleepTime());
+                Thread.sleep(parameter.getSleepTime());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

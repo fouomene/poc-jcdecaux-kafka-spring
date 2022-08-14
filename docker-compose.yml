@@ -18,3 +18,23 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+  jcdecaux-producer-kafka:
+      container_name: jcdecauxproducerkafka
+      build:
+        context: JcdecauxProducerKafka
+        dockerfile: Dockerfile
+      image: jcdecauxproducerkafka:latest
+      ports:
+        - 8181:8181
+      depends_on:
+        - kafka
+  jcdecaux-consumer-kafka:
+    container_name: jcdecauxconsumerkafka
+    build:
+      context: JcdecauxConsumerKafka
+      dockerfile: Dockerfile
+    image: jcdecauxconsumerkafka:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - kafka
